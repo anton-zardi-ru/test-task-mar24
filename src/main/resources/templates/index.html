@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{page.title}"></title>
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+<div style="text-align: center">
+    <div class="content">
+        <h3 th:text="#{form.title}"></h3>
+
+        <form method="post" th:object="${command}">
+            <table>
+                <tr class="form_rows">
+                    <td class="form_labels"><label th:for="*{search}" th:text="#{form.search}"></label></td>
+                    <td class="form_fields"><input th:id="*{search}" th:field="*{search}" th:value="*{search}" th:placeholder="#{form.search}"/></td>
+                </tr>
+                <tr class="form_rows">
+                    <td class="form_labels"><label th:for="pageNumber" th:text="#{form.pageNumber}"></label></td>
+                    <td class="form_fields"><input th:id="pageNumber" th:field="*{pageNumber}" th:value="*{pageNumber}"/></td>
+                </tr>
+                <tr class="form_rows">
+                    <td class="form_labels"><label th:for="pageSize" th:text="#{form.pageSize}"></label></td>
+                    <td class="form_fields"><input th:id="pageSize" th:field="*{pageSize}" th:value="*{pageSize}"/></label></td>
+                </tr>
+                <tr class="form_rows">
+                    <td class="form_labels"><label th:for="sortOrder" th:text="#{form.pageSize}"></label></td>
+                    <td class="form_fields"><select th:id="sortOrder" th:field="*{sortOrder}">
+                        <option th:each="paymentMethod : ${sortOrderValues}"
+                                th:value="${paymentMethod}" th:text="#{'form.paymentMethod.' + ${paymentMethod}}"></option>
+                    </select>
+                </tr>
+                <tr>
+                    <td colspan="2" class="form_submit"><input type="submit"/></td>
+                </tr>
+            </table>
+        </form>
+            <div th:if="${error}" class="error" id="">
+                <h3 th:text="#{page.error}"></h3>
+            </div>
+            <div th:if="${ error == null || ! error }">
+                <h3 th:if="${questions == null ||  questions.size() == 0}" th:text="#{questions.notFound}"></h3>
+                <div th:if="${questions != null && questions.size() > 0}">
+                    <h3 th:text="#{questions}"></h3>
+                    <table>
+                        <tr class="header">
+                            <td th:text="#{questions.title}"></td>
+                            <td th:text="#{questions.author}"></td>
+                            <td th:text="#{questions.created}"></td>
+                            <td th:text="#{questions.activity}"></td>
+                            <td th:text="#{questions.score}"></td>
+                        </tr>
+                        <th:block th:each="question : ${questions}">
+                            <tr th:class="(${question.isAnswered} ? 'answered' : 'not_answered')">
+                                <td><a th:target="_blank" th:href="${question.link}" th:utext="${question.title}"></a></td>
+                                <td th:utext="${question.owner.displayName}"></td>
+                                <td th:utext="${question.creationDate}?${#dates.format(question.creationDate, 'yyyy-MM-dd hh:mm')}"></td>
+                                <td th:utext="${question.lastActivityDate}?${#dates.format(question.creationDate, 'yyyy-MM-dd hh:mm')}"></td>
+                                <td th:utext="${question.score}"></td>
+                            </tr>
+                        </th:block>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+.header {
+    background-color: #F0F0F0;
+    text-align: center;
+}
+
+td {
+    padding: 2px;
+}
+
+.answered {
+    background-color: #98FB98; /* palegreen */
+}
+
+.answered:nth-child(2n) {
+    background-color: #78DB78; /* palegreen - 2x*/
+}
+
+.not_answered {
+    background-color: #FFC0CB; /* pink */
+}
+
+.not_answered:nth-child(2n) {
+    background-color: #DFA0AB; /* pink  - 2x*/
+}
+
+.form_labels {
+    text-align: right;
+}
+
+.form_fields {
+    text-align: left;
+}
+
+.form_submit {
+    text-align: center;
+}
+
+.form_rows:nth-child(2n) {
+    background-color: #F0F0F0;
+}
+
+.content {
+    margin: auto;
+    display: inline-block;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+}
+
+.error {
+    font-style: italic;
+}

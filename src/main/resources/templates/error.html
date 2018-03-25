@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ooops!</title>
+</head>
+<body>
+There is the error with <span th:text="${status}">unknown</span> code. Go to our <a href="/">index page</a>.<br/><br/>
+    <table>
+        <tr>
+            <td>Date</td>
+            <td  th:text="${timestamp}">${timestamp}</td>
+        </tr>
+        <tr>
+            <td>Error</td>
+            <td th:text="${error}"></td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td th:text="${status}"></td>
+        </tr>
+        <tr>
+            <td>Message</td>
+            <td th:text="${message}"></td>
+        </tr>
+        <tr th:if="${exception != null}">
+            <td>Exception</td>
+            <td th:text>${exception}</td>
+        </tr>
+        <tr th:if="${trace != null}">
+            <td>Trace</td>
+            <td th:text>${trace}</td>
+        </tr>
+    </table>
+
+</body>
+</html>
