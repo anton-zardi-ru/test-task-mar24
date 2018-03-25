@@ -35,7 +35,7 @@
                 </tr>
             </table>
         </form>
-            <div th:if="${error}" class="error" id="">
+            <div th:if="${error}" class="error" id="error-block">
                 <h3 th:text="#{page.error}"></h3>
             </div>
             <div th:if="${ error == null || ! error }">

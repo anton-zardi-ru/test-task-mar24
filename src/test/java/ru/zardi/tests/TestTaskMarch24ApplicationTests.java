@@ -45,12 +45,12 @@ public class TestTaskMarch24ApplicationTests {
     }
 
     @Test
-    public void testErrors() throws Exception {
+    public void testStackOverflowErrors() throws Exception {
         String content = this.mockMvc
                 .perform(post("/")
                                  .param("search", StackOverflowService.SIMULATE_EXCEPTION_SEARCH)
                                  .contentType(MediaType.APPLICATION_FORM_URLENCODED))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-        Assert.assertTrue("Error present", content.contains("class=\"error\""));
+        Assert.assertTrue("Error present", content.contains("error-block"));
     }
 }
